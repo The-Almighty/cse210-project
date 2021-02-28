@@ -24,7 +24,7 @@ root                    (project root folder)
 ---
 random
 
-arcade/pygame
+arcade
 
 ## Authors
 ---
