@@ -30,6 +30,8 @@ arcade
 ---
 Philip Marvin, ph1lny3@gmail.com
 
+Richard Nanney, richardpnanney@gmail.com
+
 Jaron Whipple, jaronwhipple@gmail.com
 
 Blair Parry, blair.parry0@gmail.com
