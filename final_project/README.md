@@ -24,9 +24,10 @@ root                    (project root folder)
 ---
 random
 
-arcade
+arcade/pygame
 
 ## Authors
 ---
 Philip Marvin, ph1lny3@gmail.com
-Richard Nanney, richardpnanney@gmail.com
+Jaron Whipple, jaronwhipple@gmail.com
+
