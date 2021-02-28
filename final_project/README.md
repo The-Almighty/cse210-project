@@ -23,6 +23,7 @@ root                    (project root folder)
 ## Required Technologies
 ---
 random
+
 arcade/pygame
 
 ## Authors
