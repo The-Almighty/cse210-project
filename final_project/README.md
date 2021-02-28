@@ -1,4 +1,4 @@
-# "Fishy" (working title) 
+# "Fishy" (working title)
 Start as a little fish, eat smaller fish to grow.  Avoid getting eaten by bigger fish, or game over!
 
 ## Getting Started
@@ -31,4 +31,4 @@ arcade
 Philip Marvin, ph1lny3@gmail.com
 
 Jaron Whipple, jaronwhipple@gmail.com
-
+Blair Parry, blair.parry0@gmail.com
