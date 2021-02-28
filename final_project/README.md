@@ -29,5 +29,6 @@ arcade
 ## Authors
 ---
 Philip Marvin, ph1lny3@gmail.com
+
 Jaron Whipple, jaronwhipple@gmail.com
 
