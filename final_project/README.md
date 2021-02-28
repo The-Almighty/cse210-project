@@ -1,5 +1,5 @@
-# [PROGRAM NAME] 
-[a description of the program]
+# "Fishy" (working title) 
+Start as a little fish, eat smaller fish to grow.  Avoid getting eaten by bigger fish, or game over!
 
 ## Getting Started
 ---
@@ -22,8 +22,9 @@ root                    (project root folder)
 
 ## Required Technologies
 ---
-[list required libraries]
+random
+arcade/pygame
 
 ## Authors
 ---
-[list author names and emails]
+Philip Marvin, ph1lny3@gmail.com
