@@ -29,3 +29,4 @@ arcade/pygame
 ## Authors
 ---
 Philip Marvin, ph1lny3@gmail.com
+Richard Nanney, richardpnanney@gmail.com
