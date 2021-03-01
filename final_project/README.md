@@ -16,6 +16,14 @@ root                    (project root folder)
   +-- data              (program data files)
   +-- __init__.py       (python package file)
   +-- __main__.py       (entry point for program)
+  +-- control_actors_action.py
+  +-- draw_actors_action.py
+  +-- fish.py
+  +-- handle_collisions.py
+  +-- input_service.py
+  +-- move_actors_action.py
+  +-- output_service.py
+  +-- player_fish.py
 +-- LICENSE             (license file)
 +-- README.md           (general info)
 ```
