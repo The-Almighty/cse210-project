@@ -3,8 +3,10 @@ Platformer Game
 """
 import arcade
 import random
+import os
 from fishy import constants
 from fishy.player_sprite import PlayerSprite
+from fishy.menu import MenuView
 
 # Constants used to scale our sprites from their original size
 CHARACTER_SCALING = 1
@@ -16,19 +18,23 @@ class MyGame(arcade.Window):
     """
     Main application class.
     """
+    
 
     def __init__(self):
 
         # Call the parent class and set up the window
-        super().__init__(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT, constants.SCREEN_TITLE)
+        super().__init__(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT, constants.SCREEN_TITLE, MenuView)
 
+        # Call Menu to make start screen
+        self.StartView = MenuView
         # These are 'lists' that keep track of our sprites. Each sprite should
         # go into a list.
         self.computer_list = None
         self.player_list = None
-
         # Separate variable that holds the player sprite
         self.player_sprite = None
+        # Score Initialized to 0
+        self.score = 0
 
         arcade.set_background_color(arcade.csscolor.CORNFLOWER_BLUE)
 
@@ -58,9 +64,10 @@ class MyGame(arcade.Window):
             self.computer_list.append(wall)
 
         self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.computer_list)
+        
     def on_draw(self):
         """ Render the screen. """
-
+        
         # Clear the screen to the background color
         arcade.start_render()
 
@@ -103,6 +110,10 @@ def main():
     window = MyGame()
     window.setup()
     arcade.run()
+    window = arcade.Window(WIDTH, HEIGHT, "Different Views Minimal Example")
+    menu_view = MenuView()
+    window.show_view(menu_view)
+
 
 
 if __name__ == "__main__":
