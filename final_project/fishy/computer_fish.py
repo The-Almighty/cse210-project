@@ -10,3 +10,5 @@ class ComputerSprite:
     def set_position(self, x, y):
         self.sprite.center_x = x
         self.sprite.center_y = y
+
+    

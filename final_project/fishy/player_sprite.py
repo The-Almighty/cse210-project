@@ -1,4 +1,5 @@
 import arcade
+from fishy.menu import GameOverView
 
 class PlayerSprite:
     def __init__(self):
