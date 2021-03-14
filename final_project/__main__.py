@@ -26,7 +26,7 @@ class MyGame(arcade.Window):
         super().__init__(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT, constants.SCREEN_TITLE, MenuView)
 
         # Call Menu to make start screen
-        self.StartView = MenuView
+        arcade.View = MenuView
         # These are 'lists' that keep track of our sprites. Each sprite should
         # go into a list.
         self.computer_list = None
@@ -107,10 +107,10 @@ class MyGame(arcade.Window):
 
 def main():
     """ Main method """
-    window = MyGame()
+    window = MyGame(MenuView)
     window.setup()
     arcade.run()
-    window = arcade.Window(WIDTH, HEIGHT, "Different Views Minimal Example")
+    window = arcade.Window(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
     menu_view = MenuView()
     window.show_view(menu_view)
 

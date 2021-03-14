@@ -15,7 +15,7 @@ class MenuView(arcade.View):
     
     def on_show(self):
         """ Called when switching to this view"""
-        window = arcade.Window(constants.SCREEN_WIDTh, constants.SCREEN_HEIGHT)
+        window = arcade.Window(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
         menu_view = MenuView()
         window.show_view(menu_view)
         arcade.set_background_color(arcade.color.WHITE)
@@ -52,4 +52,3 @@ class GameOverView(arcade.View):
             self.window.show_view(menu_view)
         elif key == arcade.key.ESCAPE:
             quit()
-            
