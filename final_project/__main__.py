@@ -3,10 +3,12 @@ Platformer Game
 """
 import arcade
 import random
-import os
+
+from arcade.application import View
 from fishy import constants
-from fishy.player_sprite import PlayerSprite
-from fishy.menu import MenuView
+from fishy import menu
+# from fishy import computer_fish
+# from fishy.player_sprite import PlayerSprite
 
 # Constants used to scale our sprites from their original size
 CHARACTER_SCALING = 1
@@ -14,27 +16,27 @@ TILE_SCALING = 0.5
 COIN_SCALING = 0.5
 
 
-class MyGame(arcade.Window):
+class MyGame(arcade.Window, arcade.View):
     """
     Main application class.
     """
-    
 
     def __init__(self):
 
         # Call the parent class and set up the window
-        super().__init__(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT, constants.SCREEN_TITLE, MenuView)
+        super().__init__(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT, constants.SCREEN_TITLE)
+        window = menu(View)
+        window.setup()
 
-        # Call Menu to make start screen
-        arcade.View = MenuView
+
+
         # These are 'lists' that keep track of our sprites. Each sprite should
         # go into a list.
         self.computer_list = None
         self.player_list = None
+
         # Separate variable that holds the player sprite
         self.player_sprite = None
-        # Score Initialized to 0
-        self.score = 0
 
         arcade.set_background_color(arcade.csscolor.CORNFLOWER_BLUE)
 
@@ -43,6 +45,7 @@ class MyGame(arcade.Window):
         # Create the Sprite lists
         self.player_list = arcade.SpriteList()
         self.computer_list = arcade.SpriteList(use_spatial_hash=True)
+        view = menu.MenuView
 
 
 
@@ -64,10 +67,9 @@ class MyGame(arcade.Window):
             self.computer_list.append(wall)
 
         self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.computer_list)
-        
     def on_draw(self):
         """ Render the screen. """
-        
+
         # Clear the screen to the background color
         arcade.start_render()
 
@@ -107,13 +109,7 @@ class MyGame(arcade.Window):
 
 def main():
     """ Main method """
-    window = MyGame(MenuView)
-    window.setup()
     arcade.run()
-    window = arcade.Window(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
-    menu_view = MenuView()
-    window.show_view(menu_view)
-
 
 
 if __name__ == "__main__":
