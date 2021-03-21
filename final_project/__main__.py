@@ -25,7 +25,7 @@ class MyGame(arcade.Window, arcade.View):
 
         # Call the parent class and set up the window
         super().__init__(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT, constants.SCREEN_TITLE)
-        window = menu(View)
+        window = menu.MenuView(self, arcade.View)
         window.setup()
 
 

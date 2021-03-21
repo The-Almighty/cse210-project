@@ -7,7 +7,7 @@ import arcade
 
 class MenuView(arcade.View):
     """ Class that manages the 'menu' view"""
-    
+
     def on_show(self):
         """ Called when switching to this view"""
         arcade.set_background_color(arcade.color.WHITE)
