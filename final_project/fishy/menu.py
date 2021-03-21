@@ -2,8 +2,7 @@
 This is the file designed to pull up both the Start Menu and the Game Over Menu.
 """
 
-import constants
-from __main__ import MyGame
+# import constants
 import arcade
 
 class MenuView(arcade.View):
@@ -21,7 +20,7 @@ class MenuView(arcade.View):
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
         """ Use a mouse press to advance to the 'game' view"""
-        menu_view = MyGame()
+        return
 
 
 class GameOverView(arcade.View):
