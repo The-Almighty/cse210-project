@@ -3,6 +3,7 @@ This is the file designed to pull up both the Start Menu and the Game Over Menu.
 """
 
 import constants
+from __main__ import MyGame
 import arcade
 
 class MenuView(arcade.View):
@@ -15,12 +16,12 @@ class MenuView(arcade.View):
     def on_draw(self):
         """ Draw the menu """
         arcade.start_render()
-        arcade.draw_text("Welcome to Fishy! \n\n", constants.SCREEN_WIDTH/2, constants.SCREEN_HEIGHT/2, arcade.color.BLACK, font_size=25, anchor_x="center")
-        arcade.draw_text("Move your fish with WASD, eat the smaller fish to grow, avoid the bigger fish or you'll die. Click anywhere to start.", constants.SCREEN_WIDTH/2, constants.SCREEN_HEIGHT/2, arcade.color.BLACK, font_size=15, anchor_x="center")
+        arcade.draw_text("Welcome to Fishy! \n\n", constants.SCREEN_WIDTH/2, constants.SCREEN_HEIGHT/1.5, arcade.color.BLACK, font_size=35, anchor_y = "top", anchor_x ="center")
+        arcade.draw_text("Move your fish with WASD, eat the smaller fish to grow, avoid the bigger fish or you'll die. Click anywhere to start.", constants.SCREEN_WIDTH/2, constants.SCREEN_HEIGHT/2, arcade.color.BLACK, font_size=15, anchor_y = "center", anchor_x="center")
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
         """ Use a mouse press to advance to the 'game' view"""
-        return
+        menu_view = MyGame()
 
 
 class GameOverView(arcade.View):
@@ -35,7 +36,7 @@ class GameOverView(arcade.View):
         """ Draw the game over view """
 
         arcade.start_render()
-        arcade.draw_text("Game Over - press ENTER to Restart, ESCAPE to Exit", constants.SCREEN_WIDTH/2, constants.SCREEN_HEIGHT/2, arcade.color.WHITE, font_size=30, anchor_x="center")
+        arcade.draw_text("Game Over - press ENTER to Restart, ESCAPE to Exit", constants.SCREEN_WIDTH/2, constants.SCREEN_HEIGHT/1.5, arcade.color.WHITE, font_size=30, anchor_y = "top", anchor_x="center")
 
     def on_key_press(self, key, _modifiers):
         """ If user hits enter, go back to the main menu view, or quit if escape is hit"""
