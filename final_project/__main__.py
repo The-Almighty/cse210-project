@@ -103,8 +103,14 @@ class MyGame(arcade.Window, arcade.View):
     def on_update(self, delta_time):
         """ Movement and game logic """
 
-        # Move the player with the physics engine
-        self.physics_engine.update()
++        self.collided_sprites = self.physics_engine.update()
+
+        for sprite in self.collided_sprites:
+            player_size = self.player_sprite._get_scale()
+            if sprite._get_scale() >= player_size:
+                quit()
+            else:
+                self.computer_list.remove(sprite)
 
 def main():
     """ Main method """
