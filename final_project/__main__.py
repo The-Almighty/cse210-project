@@ -15,7 +15,6 @@ CHARACTER_SCALING = 1
 TILE_SCALING = 0.5
 COIN_SCALING = 0.5
 
-
 class MyGame(arcade.Window, arcade.View):
     """
     Main application class.
