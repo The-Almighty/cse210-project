@@ -2,8 +2,7 @@
 This is the file designed to pull up both the Start Menu and the Game Over Menu.
 """
 
-from fishy import constants
-from __main__ import MyGame
+# from fishy import constants
 import arcade
 
 class MenuView(arcade.View):
