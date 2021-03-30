@@ -4,9 +4,7 @@ Platformer Game
 import arcade
 import random
 
-from arcade.application import MOUSE_BUTTON_LEFT
-
-# from arcade.application import View
+from arcade.application import View
 from fishy import constants
 from fishy import menu
 # from fishy import computer_fish
@@ -38,17 +36,14 @@ class MyGame(arcade.Window, arcade.View):
         # Separate variable that holds the player sprite
         self.player_sprite = None
 
-    def setup(self, button):
+        arcade.set_background_color(arcade.csscolor.CORNFLOWER_BLUE)
+
+    def setup(self):
         """ Set up the game here. Call this function to restart the game. """
         # Create the Sprite lists
         self.player_list = arcade.SpriteList()
         self.computer_list = arcade.SpriteList(use_spatial_hash=True)
-        window = menu.MenuView()
-        window.on_draw()
-        if button == MOUSE_BUTTON_LEFT:
-            menu.MenuView.on_mouse_press()
-
-        arcade.set_background_color(arcade.csscolor.CORNFLOWER_BLUE)
+        # view = menu.MenuView
 
 
 
@@ -120,7 +115,7 @@ class MyGame(arcade.Window, arcade.View):
 def main():
     """ Main method """
     window = MyGame()
-    window.setup(arcade.button)
+    window.setup()
     arcade.run()
 
 
