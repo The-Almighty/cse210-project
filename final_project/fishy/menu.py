@@ -3,7 +3,6 @@ This is the file designed to pull up both the Start Menu and the Game Over Menu.
 """
 
 from fishy import constants
-import __main__
 import arcade
 
 class MenuView(arcade.View):
@@ -19,9 +18,8 @@ class MenuView(arcade.View):
         arcade.draw_text("Welcome to Fishy! \n\n", constants.SCREEN_WIDTH/2, constants.SCREEN_HEIGHT/1.5, arcade.color.BLACK, font_size=35, anchor_y = "top", anchor_x ="center")
         arcade.draw_text("Move your fish with WASD, eat the smaller fish to grow, avoid the bigger fish or you'll die. Click anywhere to start.", constants.SCREEN_WIDTH/2, constants.SCREEN_HEIGHT/2, arcade.color.BLACK, font_size=15, anchor_y = "center", anchor_x="center")
 
-    def on_mouse_press(self, _x, _y, button, _modifiers, window):
+    def on_mouse_press(self, _x, _y, button, _modifiers):
         """ Use a mouse press to advance to the 'game' view"""
-        __main__.setup()
         return
 
 
