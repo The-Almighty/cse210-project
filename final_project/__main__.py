@@ -6,7 +6,7 @@ import random
 
 from arcade.application import MOUSE_BUTTON_LEFT
 
-# from arcade.application import View
+from arcade.application import View
 from fishy import constants
 from fishy import menu
 # from fishy import computer_fish
@@ -17,7 +17,7 @@ CHARACTER_SCALING = 1
 TILE_SCALING = 0.5
 COIN_SCALING = 0.5
 
-class MyGame(arcade.Window, arcade.View):
+class MyGame(arcade.Window):
     """
     Main application class.
     """
@@ -28,8 +28,8 @@ class MyGame(arcade.Window, arcade.View):
         super().__init__(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT, constants.SCREEN_TITLE)
 
 
-        window = menu.MenuView()
-        window.on_draw()
+        # window = menu.MenuView(arcade.View)
+        # window.on_draw()
         # These are 'lists' that keep track of our sprites. Each sprite should
         # go into a list.
         self.computer_list = None
@@ -37,17 +37,20 @@ class MyGame(arcade.Window, arcade.View):
 
         # Separate variable that holds the player sprite
         self.player_sprite = None
+        self.button = None
 
-    def on_mouse_press
 
-    def setup(self, button):
+        # if button == MOUSE_BUTTON_LEFT:
+        #     menu.MenuView.on_mouse_press(button)
+
+        # arcade.run()
+
+
+    def setup(self):
         """ Set up the game here. Call this function to restart the game. """
         # Create the Sprite lists
         self.player_list = arcade.SpriteList()
         self.computer_list = arcade.SpriteList(use_spatial_hash=True)
-        if button == MOUSE_BUTTON_LEFT:
-            menu.MenuView.on_mouse_press()
-
         arcade.set_background_color(arcade.csscolor.CORNFLOWER_BLUE)
 
 
@@ -120,9 +123,10 @@ class MyGame(arcade.Window, arcade.View):
 def main():
     """ Main method """
     window = MyGame()
-    window.setup(button)
-    arcade.run()
+    window.setup()
+
 
 
 if __name__ == "__main__":
     main()
+
