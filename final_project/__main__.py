@@ -24,7 +24,8 @@ class MyGame(arcade.Window, arcade.View):
 
         # Call the parent class and set up the window
         super().__init__(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT, constants.SCREEN_TITLE)
-
+        window = menu.MenuView(self, arcade.View)
+        window.setup()
 
 
 
@@ -43,7 +44,7 @@ class MyGame(arcade.Window, arcade.View):
         # Create the Sprite lists
         self.player_list = arcade.SpriteList()
         self.computer_list = arcade.SpriteList(use_spatial_hash=True)
-        # view = menu.MenuView
+        view = menu.MenuView
 
 
 
@@ -102,7 +103,7 @@ class MyGame(arcade.Window, arcade.View):
     def on_update(self, delta_time):
         """ Movement and game logic """
 
-        self.collided_sprites = self.physics_engine.update()
++        self.collided_sprites = self.physics_engine.update()
 
         for sprite in self.collided_sprites:
             player_size = self.player_sprite._get_scale()
@@ -111,11 +112,8 @@ class MyGame(arcade.Window, arcade.View):
             else:
                 self.computer_list.remove(sprite)
 
-
 def main():
     """ Main method """
-    window = MyGame()
-    window.setup()
     arcade.run()
 
 
