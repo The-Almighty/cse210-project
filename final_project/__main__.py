@@ -89,7 +89,7 @@ class MyGame(arcade.View):
             wall.position = coordinate
             self.computer_list.append(wall)
 
-        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.computer_list, self)
+        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.computer_list)
 
     def on_draw(self):
         """ Render the screen. """
