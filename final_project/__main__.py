@@ -47,7 +47,7 @@ class MyGame(arcade.View):
     Main application class.
     """
 
-    def __init__(player_sprite, computer_list, self):
+    def __init__(self, player_sprite, computer_list):
 
         # Call the parent class and set up the window
         # super().__init__(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT, constants.SCREEN_TITLE)
@@ -64,6 +64,13 @@ class MyGame(arcade.View):
 
         arcade.set_background_color(arcade.csscolor.CORNFLOWER_BLUE)
 
+    def generate_enemy(self, delta_time):
+        # Add a computer fish on the side of the screen
+        enemy_size = self.player_sprite._get_scale() - 0.5 + random.random()
+        wall = arcade.Sprite(":resources:images/enemies/fishPink.png", enemy_size)
+        wall.position = [constants.SCREEN_WIDTH - 10, random.randint(0, constants.SCREEN_HEIGHT)]
+        self.computer_list.append(wall)
+
     def setup(self):
         """ Set up the game here. Call this function to restart the game. """
         # Create the Sprite lists
@@ -79,17 +86,7 @@ class MyGame(arcade.View):
         self.player_sprite.center_y = constants.SCREEN_HEIGHT / 2
         self.player_list.append(self.player_sprite)
 
-        coordinate_list = [[constants.SCREEN_WIDTH - 10, random.randint(0, constants.SCREEN_HEIGHT)],
-                           [constants.SCREEN_WIDTH - 10, random.randint(0, constants.SCREEN_HEIGHT)],
-                           [constants.SCREEN_WIDTH - 10, random.randint(0, constants.SCREEN_HEIGHT)]]
-
-        for coordinate in coordinate_list:
-            # Add a computer fish on the side of the screen
-            wall = arcade.Sprite(":resources:images/enemies/fishPink.png", TILE_SCALING)
-            wall.position = coordinate
-            self.computer_list.append(wall)
-
-        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.computer_list)
+        arcade.schedule(self.generate_enemy, 1)
 
     def on_draw(self):
         """ Render the screen. """
@@ -128,14 +125,24 @@ class MyGame(arcade.View):
     def on_update(self, delta_time):
         """ Movement and game logic """
 
-        # Move the player with the physics engine
-        self.physics_engine.update()
-        self.collided_sprites = self.physics_engine.update()
+        self.collided_sprites = arcade.check_for_collision_with_list(self.player_sprite, self.computer_list)
+
         for sprite in self.collided_sprites:
             player_size = self.player_sprite._get_scale()
             if sprite._get_scale() >= player_size:
-                GameOverView(self)
+                quit()   #Should call upon the end screen
             else:
+                new_player_size = self.player_sprite._get_scale() + (sprite._get_scale() / 20)
+                self.computer_list.remove(sprite)
+                self.player_sprite._set_scale(new_player_size)
+
+
+        self.player_sprite.center_y += self.player_sprite.change_y
+        self.player_sprite.center_x += self.player_sprite.change_x
+
+        for sprite in self.computer_list:
+            sprite.center_x += -4
+            if sprite._get_center_x() <= 1.0:
                 self.computer_list.remove(sprite)
 
 class GameOverView(arcade.View):
