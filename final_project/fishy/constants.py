@@ -1,5 +1,11 @@
+from pathlib import Path
 
 
+home = Path.home()
+assets: Path = Path(__file__).parent / 'assets'
+
+MAIN_SCREEN_SOUND = assets / 'Sappheiros - Lights.mp3'
+DEFAULT_VOLUME = .25
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 1000
 SCREEN_TITLE = "Fishy"

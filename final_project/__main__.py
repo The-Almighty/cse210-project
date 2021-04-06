@@ -53,7 +53,9 @@ class MyGame(arcade.View):
         # Call the parent class and set up the window
         # super().__init__(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT, constants.SCREEN_TITLE)
         super().__init__()
-        # window = menu.MenuView(self)
+        self.master_volume = constants.DEFAULT_VOLUME
+        self.background_music = arcade.Sound(constants.MAIN_SCREEN_SOUND)
+        self.background_music.play(self.master_volume, loop = True)
 
         # These are 'lists' that keep track of our sprites. Each sprite should
         # go into a list.
