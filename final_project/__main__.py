@@ -3,6 +3,7 @@ Platformer Game
 """
 import arcade
 import random
+from arcade import key
 
 from arcade.application import MOUSE_BUTTON_LEFT, View
 from fishy import constants
@@ -23,8 +24,8 @@ class MenuView(arcade.View):
         """ Called when switching to this view"""
         """ This is run once when we switch to this view """
         arcade.set_background_color(arcade.csscolor.WHITE)
-        SCREEN_WIDTH = 800
-        SCREEN_HEIGHT = 600
+        SCREEN_WIDTH = constants.SCREEN_WIDTH
+        SCREEN_HEIGHT = constants.SCREEN_HEIGHT
 
         # Reset the viewport, necessary if we have a scrolling game and we need
         # to reset the viewport back to the start so we can see what we draw.
@@ -58,6 +59,7 @@ class MyGame(arcade.View):
         # go into a list.
         self.computer_list = None
         self.player_list = None
+        self.score = 0
 
         # Separate variable that holds the player sprite
         self.player_sprite = None
@@ -85,6 +87,9 @@ class MyGame(arcade.View):
         self.player_sprite.center_x = constants.SCREEN_WIDTH / 2
         self.player_sprite.center_y = constants.SCREEN_HEIGHT / 2
         self.player_list.append(self.player_sprite)
+        self.view_bottom = 0
+        self.view_left = 0
+        self.score = 0
 
         arcade.schedule(self.generate_enemy, 1)
 
@@ -97,6 +102,8 @@ class MyGame(arcade.View):
         # Draw our sprites
         self.computer_list.draw()
         self.player_list.draw()
+        score_text = f"Score: {self.score}"
+        arcade.draw_text(score_text, 10 + self.view_left, 10 + self.view_bottom, arcade.csscolor.BLACK, 18)
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
@@ -124,17 +131,24 @@ class MyGame(arcade.View):
 
     def on_update(self, delta_time):
         """ Movement and game logic """
+        self.eat_sound = arcade.load_sound(":resources:sounds/hit3.wav")
+        self.ow_sound = arcade.load_sound(":resources:sounds/lose5.wav")
 
         self.collided_sprites = arcade.check_for_collision_with_list(self.player_sprite, self.computer_list)
 
         for sprite in self.collided_sprites:
             player_size = self.player_sprite._get_scale()
             if sprite._get_scale() >= player_size:
-                quit()   #Should call upon the end screen
+                arcade.play_sound(self.ow_sound)
+                view = GameOverView()
+                self.window.show_view(view)   #Should call upon the end screen
+                
             else:
                 new_player_size = self.player_sprite._get_scale() + (sprite._get_scale() / 20)
                 self.computer_list.remove(sprite)
                 self.player_sprite._set_scale(new_player_size)
+                arcade.play_sound(self.eat_sound)
+                self.score += 1
 
 
         self.player_sprite.center_y += self.player_sprite.change_y
@@ -166,7 +180,10 @@ class GameOverView(arcade.View):
             menu_view = MenuView()
             self.window.show_view(menu_view)
         elif key == arcade.key.ESCAPE:
-            quit()
+            self.window.close()
+            self.window = None
+            return
+
 
 def main():
     """ Main method """
